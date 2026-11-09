@@ -98,6 +98,7 @@ typedef struct {
     int npaths;
     int restore_batch; /* games removed from the library per group when moving pkgs back */
     int internal;      /* pkgs in the console's /data/PS4Mount are used too */
+    int data_pkg;      /* with internal and organize off: /data/pkg and all its subfolders are searched too */
     int organize;      /* pkgs are moved into <root>/ps4/<TID>/ (default); off: used where they are */
     int lang;          /* LANG_* of notifications and the panel, -1: the console's */
     int nas;           /* a network share is used too (firmwares with a fusefs patch, read only) */
@@ -2939,6 +2940,8 @@ static int internal_dir_skip(const char *path, const char *rel) {
     size_t n = strlen(DEFAULT_SCAN_PATH);
     if (!strncmp(rel, DEFAULT_SCAN_PATH, n) && (!rel[n] || rel[n] == '/'))
         return 0;
+    if (g_cfg.data_pkg && !strncmp(rel, "pkg", 3) && (!rel[3] || rel[3] == '/'))
+        return 0; /* the installer's folder, only when asked for (the pkgs stay where they are) */
     return strncmp(rel, "ps4", 3) || (rel[3] && rel[3] != '/');
 }
 
@@ -4753,8 +4756,8 @@ static int first_start(void) {
 static void config_save(void) {
     g_setup = 0; /* the settings were chosen: games are added from now on */
     buf_t b = {0};
-    buf_printf(&b, "ver=2\nbatch=%d\nbatch_size=%d\ndlc=%d\ndlc_big=%d\nrestore_batch=%d\ninternal=%d\norganize=%d\nlang=%s\n",
-               g_cfg.batch, g_cfg.batch_size, g_cfg.dlc, g_cfg.dlc_big, g_cfg.restore_batch, g_cfg.internal, g_cfg.organize,
+    buf_printf(&b, "ver=2\nbatch=%d\nbatch_size=%d\ndlc=%d\ndlc_big=%d\nrestore_batch=%d\ninternal=%d\ndata_pkg=%d\norganize=%d\nlang=%s\n",
+               g_cfg.batch, g_cfg.batch_size, g_cfg.dlc, g_cfg.dlc_big, g_cfg.restore_batch, g_cfg.internal, g_cfg.data_pkg, g_cfg.organize,
                g_cfg.lang >= 0 ? lang_tag(g_cfg.lang) : "auto");
     buf_printf(&b, "nas=%d\nnas_proto=%d\nnas_port=%d\nnas_server=%s\nnas_share=%s\nnas_sub=%s\nnas_user=%s\nnas_pass=%s\n",
                g_cfg.nas, g_cfg.nas_proto, g_cfg.nas_port, g_cfg.nas_server, g_cfg.nas_share,
@@ -4793,6 +4796,8 @@ static void config_load(void) {
             c.restore_batch = atoi(line + 14);
         else if (!strncmp(line, "internal=", 9))
             c.internal = atoi(line + 9) != 0;
+        else if (!strncmp(line, "data_pkg=", 9))
+            c.data_pkg = atoi(line + 9) != 0;
         else if (!strncmp(line, "organize=", 9))
             c.organize = atoi(line + 9) != 0;
         else if (!strncmp(line, "klog=", 5))
@@ -4846,11 +4851,11 @@ static void config_load(void) {
 
 void app_config_json(buf_t *out) {
     buf_printf(out,
-               "{\"batch\":%s,\"batch_size\":%d,\"dlc\":%s,\"dlc_big\":%s,\"internal\":%s,\"organize\":%s,\"restore_batch\":%d,\"max_restore_batch\":%d,"
+               "{\"batch\":%s,\"batch_size\":%d,\"dlc\":%s,\"dlc_big\":%s,\"internal\":%s,\"data_pkg\":%s,\"organize\":%s,\"restore_batch\":%d,\"max_restore_batch\":%d,"
                "\"lang\":\"%s\",\"ui_lang\":\"%s\",\"klog\":%s,\"nas_supported\":%s,\"nas\":%s,\"nas_proto\":\"%s\",\"nas_port\":%d,"
                "\"nas_rescan\":%d,\"nas_tested\":%s,\"nas_server\":",
                g_cfg.batch ? "true" : "false", g_cfg.batch_size, g_cfg.dlc ? "true" : "false", g_cfg.dlc_big ? "true" : "false",
-               g_cfg.internal ? "true" : "false", g_cfg.organize ? "true" : "false", g_cfg.restore_batch, MAX_RESTORE_BATCH,
+               g_cfg.internal ? "true" : "false", g_cfg.data_pkg ? "true" : "false", g_cfg.organize ? "true" : "false", g_cfg.restore_batch, MAX_RESTORE_BATCH,
                g_cfg.lang >= 0 ? lang_tag(g_cfg.lang) : "auto", lang_tag(g_lang), g_cfg.klog ? "true" : "false",
                nas_supported() ? "true" : "false", g_cfg.nas ? "true" : "false",
                g_cfg.nas_proto == NAS_SMB ? "smb" : "nfs", g_cfg.nas_port, g_cfg.nas_rescan,
@@ -4972,6 +4977,8 @@ int app_config_set(const char *body, char *msg, size_t cap) {
                 c.dlc_big = atoi(value) != 0;
             else if (k == 8 && !strncmp(p, "internal", 8))
                 c.internal = atoi(value) != 0;
+            else if (k == 8 && !strncmp(p, "data_pkg", 8))
+                c.data_pkg = atoi(value) != 0;
             else if (k == 8 && !strncmp(p, "organize", 8))
                 c.organize = atoi(value) != 0;
             else if (k == 4 && !strncmp(p, "klog", 4))
