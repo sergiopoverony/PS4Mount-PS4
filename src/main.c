@@ -2614,7 +2614,7 @@ static int adopt_dir_pass(const char *root, const char *dir, int pass) {
                       "%s está hecho para el firmware %s (esta consola tiene %s): solo funciona con un backport"),
                    e->d_name, need, have);
         }
-        int is_app = cat && pkg_cat_is_game(cat->sval), is_patch = cat && !strcmp(cat->sval, "gp");
+        int is_app = cat && !strcmp(cat->sval, "gd"), is_patch = cat && !strcmp(cat->sval, "gp");
         int is_dlc = cat && !strcmp(cat->sval, "ac");
         if (is_dlc || pass == 1) {
             /* add-ons go in the second pass: their game may be in this folder too */
