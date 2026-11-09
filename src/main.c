@@ -113,6 +113,7 @@ typedef struct {
     int nas_rescan;    /* minutes between looks at the share for new pkgs; 0: only when asked */
     int klog;          /* the console's kernel log is read (game start/stop); off leaves it to
                         * another payload (AnyPad needs it to identify its virtual pad) */
+    int auto_add;      /* new games found by a scan are added by themselves; off: only the ones chosen in the panel */
 } config_t;
 
 #define MAX_RESTORE_BATCH 10
@@ -121,7 +122,7 @@ typedef struct {
  * moved until the user puts it there (the drive root, "", is still a choice). */
 #define DEFAULT_SCAN_PATH "PS4Mount"
 
-static config_t g_cfg = {1, 5, 1, {DEFAULT_SCAN_PATH}, 1, 5, 1, 1, 0, -1, 0, NAS_NFS, 0, "", "", "", "", "", 1, 1, 1};
+static config_t g_cfg = {1, 5, 1, {DEFAULT_SCAN_PATH}, 1, 5, 1, 1, 0, -1, 0, NAS_NFS, 0, "", "", "", "", "", 1, 1, 1, 0};
 #define NAS_RESCAN_MAX 1440 /* minutes: once a day */
 static int g_setup; /* a first start: no game is added until the settings are saved (first_start) */
 /* A first start with nobody at the panel for this long goes on with the default settings:
@@ -1972,6 +1973,16 @@ static int removed(const char *tid) {
     return exists(p);
 }
 
+/* auto_add off: a game the system does not know yet waits until it is chosen in the panel
+ * (Add to library writes STATE_DIR/<TID>.add). Games already in the library are not held. */
+static int awaiting_choice(const char *tid) {
+    char p[64];
+    if (g_cfg.auto_add || db_is_registered(tid))
+        return 0;
+    snprintf(p, sizeof(p), STATE_DIR "/%s.add", tid);
+    return !exists(p);
+}
+
 /* Real installs keep app.pkg on the internal drive; never touch those. */
 static int installed_internally(const char *tid) {
     char p[64];
@@ -2019,7 +2030,7 @@ static int served_elsewhere(const title_info_t *t) {
 
 static int title_state(const title_info_t *t) {
     const char *tid = t->title_id;
-    if (installed_internally(tid) || removed(tid))
+    if (installed_internally(tid) || removed(tid) || awaiting_choice(tid))
         return -1;
     if (served_elsewhere(t)) {
         if (first_time(t->app_path))
@@ -3894,7 +3905,7 @@ void app_games_json(buf_t *out) {
                 state = "internal";
             else if (served_elsewhere(t))
                 state = "duplicate";
-            else if (removed(tid))
+            else if (removed(tid) || awaiting_choice(tid))
                 state = "removed";
             else if (m && m->running)
                 state = "running";
@@ -4018,6 +4029,10 @@ int app_add(const char *tid, char *msg, size_t cap) {
     }
     snprintf(rm, sizeof(rm), STATE_DIR "/%s.removed", tid);
     unlink(rm);
+    snprintf(rm, sizeof(rm), STATE_DIR "/%s.add", tid);
+    int fd = open(rm, O_WRONLY | O_CREAT, 0666); /* chosen: added even with auto_add off */
+    if (fd >= 0)
+        close(fd);
     clear_removed_dlc();
     g_next_scan = 0;
     snprintf(msg, cap, TR("Adding %s to the library", "Añadiendo %s a la biblioteca"), tid);
@@ -4758,8 +4773,8 @@ static int first_start(void) {
 static void config_save(void) {
     g_setup = 0; /* the settings were chosen: games are added from now on */
     buf_t b = {0};
-    buf_printf(&b, "ver=2\nbatch=%d\nbatch_size=%d\ndlc=%d\ndlc_big=%d\nrestore_batch=%d\ninternal=%d\ndata_pkg=%d\norganize=%d\nlang=%s\n",
-               g_cfg.batch, g_cfg.batch_size, g_cfg.dlc, g_cfg.dlc_big, g_cfg.restore_batch, g_cfg.internal, g_cfg.data_pkg, g_cfg.organize,
+    buf_printf(&b, "ver=2\nbatch=%d\nbatch_size=%d\ndlc=%d\ndlc_big=%d\nrestore_batch=%d\ninternal=%d\ndata_pkg=%d\nauto_add=%d\norganize=%d\nlang=%s\n",
+               g_cfg.batch, g_cfg.batch_size, g_cfg.dlc, g_cfg.dlc_big, g_cfg.restore_batch, g_cfg.internal, g_cfg.data_pkg, g_cfg.auto_add, g_cfg.organize,
                g_cfg.lang >= 0 ? lang_tag(g_cfg.lang) : "auto");
     buf_printf(&b, "nas=%d\nnas_proto=%d\nnas_port=%d\nnas_server=%s\nnas_share=%s\nnas_sub=%s\nnas_user=%s\nnas_pass=%s\n",
                g_cfg.nas, g_cfg.nas_proto, g_cfg.nas_port, g_cfg.nas_server, g_cfg.nas_share,
@@ -4798,6 +4813,8 @@ static void config_load(void) {
             c.restore_batch = atoi(line + 14);
         else if (!strncmp(line, "internal=", 9))
             c.internal = atoi(line + 9) != 0;
+        else if (!strncmp(line, "auto_add=", 9))
+            c.auto_add = atoi(line + 9) != 0;
         else if (!strncmp(line, "data_pkg=", 9))
             c.data_pkg = atoi(line + 9) != 0;
         else if (!strncmp(line, "organize=", 9))
@@ -4852,11 +4869,11 @@ static void config_load(void) {
 
 void app_config_json(buf_t *out) {
     buf_printf(out,
-               "{\"batch\":%s,\"batch_size\":%d,\"dlc\":%s,\"dlc_big\":%s,\"internal\":%s,\"data_pkg\":%s,\"organize\":%s,\"restore_batch\":%d,\"max_restore_batch\":%d,"
+               "{\"batch\":%s,\"batch_size\":%d,\"dlc\":%s,\"dlc_big\":%s,\"internal\":%s,\"data_pkg\":%s,\"auto_add\":%s,\"organize\":%s,\"restore_batch\":%d,\"max_restore_batch\":%d,"
                "\"lang\":\"%s\",\"ui_lang\":\"%s\",\"klog\":%s,\"nas_supported\":%s,\"nas\":%s,\"nas_proto\":\"%s\",\"nas_port\":%d,"
                "\"nas_rescan\":%d,\"nas_tested\":%s,\"nas_server\":",
                g_cfg.batch ? "true" : "false", g_cfg.batch_size, g_cfg.dlc ? "true" : "false", g_cfg.dlc_big ? "true" : "false",
-               g_cfg.internal ? "true" : "false", g_cfg.data_pkg ? "true" : "false", g_cfg.organize ? "true" : "false", g_cfg.restore_batch, MAX_RESTORE_BATCH,
+               g_cfg.internal ? "true" : "false", g_cfg.data_pkg ? "true" : "false", g_cfg.auto_add ? "true" : "false", g_cfg.organize ? "true" : "false", g_cfg.restore_batch, MAX_RESTORE_BATCH,
                g_cfg.lang >= 0 ? lang_tag(g_cfg.lang) : "auto", lang_tag(g_lang), g_cfg.klog ? "true" : "false",
                nas_supported() ? "true" : "false", g_cfg.nas ? "true" : "false",
                g_cfg.nas_proto == NAS_SMB ? "smb" : "nfs", g_cfg.nas_port, g_cfg.nas_rescan,
@@ -4978,6 +4995,8 @@ int app_config_set(const char *body, char *msg, size_t cap) {
                 c.dlc_big = atoi(value) != 0;
             else if (k == 8 && !strncmp(p, "internal", 8))
                 c.internal = atoi(value) != 0;
+            else if (k == 8 && !strncmp(p, "auto_add", 8))
+                c.auto_add = atoi(value) != 0;
             else if (k == 8 && !strncmp(p, "data_pkg", 8))
                 c.data_pkg = atoi(value) != 0;
             else if (k == 8 && !strncmp(p, "organize", 8))

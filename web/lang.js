@@ -43,6 +43,9 @@ var LANGS = {
     "Also use pkgs in the console's /data/PS4Mount": 'Usar también los pkgs de /data/PS4Mount de la consola',
     "Pkgs sent to the console's storage are added from there, with no install to wait for. They still take internal space.":
       'Los pkgs enviados a la memoria de la consola se añaden desde ahí, sin esperar una instalación. Ocupan espacio interno.',
+    "Add the games found by a scan by themselves": 'Añadir por sí solos los juegos que encuentra la búsqueda',
+    "Off: a scan only lists the games, and the ones you press Add to library on are added. Games already in the library are kept up to date either way.":
+      'Apagado: la búsqueda solo lista los juegos y se añaden los que pulsas Añadir a la biblioteca. Los juegos que ya están en la biblioteca se mantienen al día en ambos casos.',
     "Also search /data/pkg and all its subfolders": 'Buscar también en /data/pkg y todas sus subcarpetas',
     "Needs the switch above on. The pkgs stay where they are, even with \"Organize pkgs\" on. Games the console already installed are skipped. Restart the console once after the first games are added.":
       'Necesita el ajuste de arriba activado. Los pkgs se quedan donde están, aunque "Organizar los pkgs" esté activado. Los juegos que la consola ya instaló se omiten. Reinicia la consola una vez después de añadir los primeros juegos.',
