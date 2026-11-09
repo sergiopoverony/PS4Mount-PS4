@@ -106,6 +106,14 @@ function tKeys(file) {
     if (a !== b) ok(false, 'same placeholders in the translation of "' + k + '"');
   });
 
+  // Russian: every Spanish text has one, with the same placeholders
+  { const miss = Object.keys(L.es).filter((k) => !L.ru[k]);
+    ok(!miss.length, 'every text has a Russian one' + (miss.length ? ': ' + JSON.stringify(miss.slice(0, 5)) : ''));
+    Object.keys(L.ru).forEach((k) => {
+      const set = (x) => [...new Set(x.match(/\{\d\}/g) || [])].sort().join();
+      if (set(k) !== set(L.ru[k])) ok(false, 'same placeholders in the Russian translation of "' + k + '"');
+    }); }
+
   // the browser of older firmwares: plain ES5 only
   scripts('legacy.html').forEach((code, i) => { const e = parses(code, 5); ok(!e, 'legacy script ' + i + ' is ES5' + (e ? ': ' + e : '')); });
   // the head script of the main page runs everywhere before the redirect: ES5 too

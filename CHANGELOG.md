@@ -10,11 +10,14 @@ PS4Mount PS4 is a PS4-only port of [PS4Mount](https://github.com/gasb07/ps4mount
 
 - **New setting "Add the games found by a scan by themselves"** (off by default): a scan only lists the new games ("Not in library"); the ones you press Add to library on are added. Games already in the library are kept up to date.
 
+- **Russian panel** (Settings → Language → Русский). The notifications on the console screen stay in English for now.
+
 **Español**
 
 - **Nuevo ajuste "Buscar también en /data/pkg y todas sus subcarpetas"** (activado por defecto; necesita activado "Usar también los pkgs de /data/PS4Mount"; sus pkgs se usan siempre donde están): se busca en la carpeta del instalador de la consola como en un USB, con todas sus subcarpetas; los pkgs se quedan donde están. Los juegos que la consola ya instaló se omiten.
 - **"Organizar los pkgs" vuelve a estar apagado por defecto**: los pkgs se usan donde están y no se mueven ni se renombran. Actívalo en Ajustes para usar la carpeta ps4.
 - **Nuevo ajuste "Añadir por sí solos los juegos que encuentra la búsqueda"** (apagado por defecto): la búsqueda solo lista los juegos nuevos ("Fuera de la biblioteca"); se añaden los que pulsas Añadir a la biblioteca. Los juegos que ya están en la biblioteca se mantienen al día.
+- **Panel en ruso** (Ajustes → Idioma → Русский). Las notificaciones en la pantalla de la consola siguen en inglés por ahora.
 
 ## 0.7.4-fix
 
