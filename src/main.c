@@ -99,7 +99,7 @@ typedef struct {
     int restore_batch; /* games removed from the library per group when moving pkgs back */
     int internal;      /* pkgs in the console's /data/PS4Mount are used too */
     int data_pkg;      /* the console's /data/pkg and all its subfolders are searched too, the pkgs used in place (default) */
-    int organize;      /* pkgs are moved into <root>/ps4/<TID>/ (default); off: used where they are */
+    int organize;      /* pkgs are moved into <root>/ps4/<TID>/ ; off (the default): used where they are */
     int lang;          /* LANG_* of notifications and the panel, -1: the console's */
     int nas;           /* a network share is used too (firmwares with a fusefs patch, read only) */
     int nas_proto;     /* NAS_NFS or NAS_SMB */
@@ -121,7 +121,7 @@ typedef struct {
  * moved until the user puts it there (the drive root, "", is still a choice). */
 #define DEFAULT_SCAN_PATH "PS4Mount"
 
-static config_t g_cfg = {1, 5, 1, {DEFAULT_SCAN_PATH}, 1, 5, 1, 1, 1, -1, 0, NAS_NFS, 0, "", "", "", "", "", 1, 1, 1};
+static config_t g_cfg = {1, 5, 1, {DEFAULT_SCAN_PATH}, 1, 5, 1, 1, 0, -1, 0, NAS_NFS, 0, "", "", "", "", "", 1, 1, 1};
 #define NAS_RESCAN_MAX 1440 /* minutes: once a day */
 static int g_setup; /* a first start: no game is added until the settings are saved (first_start) */
 /* A first start with nobody at the panel for this long goes on with the default settings:
@@ -4844,8 +4844,7 @@ static void config_load(void) {
      * they were, the console's installer found them again and a game could end up installed
      * on both drives (issue #4). The ps4 folder is the default again; turning it off is kept
      * from the next save on. */
-    if (ver < 2)
-        c.organize = 1;
+    (void)ver; /* organize stays as saved; the default is off (the pkgs are used where they are) */
     g_cfg = c;
     printf("[config] batch=%d batch_size=%d dlc=%d restore_batch=%d organize=%d folders=%d\n", g_cfg.batch, g_cfg.batch_size,
            g_cfg.dlc, g_cfg.restore_batch, g_cfg.organize, g_cfg.npaths);
