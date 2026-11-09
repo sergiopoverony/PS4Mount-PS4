@@ -4,11 +4,11 @@ PS4Mount PS4 is a PS4-only port of [PS4Mount](https://github.com/gasb07/ps4mount
 
 ## Unreleased
 
-- **New setting "Also search /data/pkg and all its subfolders"** (off by default, needs "Also use pkgs in the console's /data/PS4Mount" on and "Organize pkgs" off): the console's installer folder is searched like a USB drive, with all its subfolders; the pkgs stay where they are. Games the console already installed are skipped.
+- **New setting "Also search /data/pkg and all its subfolders"** (on by default; needs "Also use pkgs in the console's /data/PS4Mount" on; its pkgs are always used in place): the console's installer folder is searched like a USB drive, with all its subfolders; the pkgs stay where they are. Games the console already installed are skipped.
 
 **Español**
 
-- **Nuevo ajuste "Buscar también en /data/pkg y todas sus subcarpetas"** (apagado por defecto; necesita activado "Usar también los pkgs de /data/PS4Mount" y apagado "Organizar los pkgs"): se busca en la carpeta del instalador de la consola como en un USB, con todas sus subcarpetas; los pkgs se quedan donde están. Los juegos que la consola ya instaló se omiten.
+- **Nuevo ajuste "Buscar también en /data/pkg y todas sus subcarpetas"** (activado por defecto; necesita activado "Usar también los pkgs de /data/PS4Mount"; sus pkgs se usan siempre donde están): se busca en la carpeta del instalador de la consola como en un USB, con todas sus subcarpetas; los pkgs se quedan donde están. Los juegos que la consola ya instaló se omiten.
 
 ## 0.7.4-fix
 

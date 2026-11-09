@@ -98,7 +98,7 @@ typedef struct {
     int npaths;
     int restore_batch; /* games removed from the library per group when moving pkgs back */
     int internal;      /* pkgs in the console's /data/PS4Mount are used too */
-    int data_pkg;      /* with internal and organize off: /data/pkg and all its subfolders are searched too */
+    int data_pkg;      /* the console's /data/pkg and all its subfolders are searched too, the pkgs used in place (default) */
     int organize;      /* pkgs are moved into <root>/ps4/<TID>/ (default); off: used where they are */
     int lang;          /* LANG_* of notifications and the panel, -1: the console's */
     int nas;           /* a network share is used too (firmwares with a fusefs patch, read only) */
@@ -121,7 +121,7 @@ typedef struct {
  * moved until the user puts it there (the drive root, "", is still a choice). */
 #define DEFAULT_SCAN_PATH "PS4Mount"
 
-static config_t g_cfg = {1, 5, 1, {DEFAULT_SCAN_PATH}, 1, 5, 1, 1, -1, 0, NAS_NFS, 0, "", "", "", "", "", 1, 1, 1};
+static config_t g_cfg = {1, 5, 1, {DEFAULT_SCAN_PATH}, 1, 5, 1, 1, 1, -1, 0, NAS_NFS, 0, "", "", "", "", "", 1, 1, 1};
 #define NAS_RESCAN_MAX 1440 /* minutes: once a day */
 static int g_setup; /* a first start: no game is added until the settings are saved (first_start) */
 /* A first start with nobody at the panel for this long goes on with the default settings:
@@ -359,7 +359,9 @@ static int is_nas(const char *root) { return !strcmp(root, NAS_ROOT_PATH); }
 
 /* Pkgs used where they are: with organizing off everywhere, and always on a share, which
  * is read-only and cannot be renamed into ps4/<TITLE_ID>/. */
-static int in_place(const char *root) { return !g_cfg.organize || is_nas(root); }
+/* The console's storage with /data/pkg searched is always used in place: the pkgs of the
+ * installer's folder are never moved into ps4/. */
+static int in_place(const char *root) { return !g_cfg.organize || is_nas(root) || (is_internal(root) && g_cfg.data_pkg); }
 
 static int root_present(const char *root) {
     if (is_nas(root))

@@ -44,8 +44,8 @@ var LANGS = {
     "Pkgs sent to the console's storage are added from there, with no install to wait for. They still take internal space.":
       'Los pkgs enviados a la memoria de la consola se añaden desde ahí, sin esperar una instalación. Ocupan espacio interno.',
     "Also search /data/pkg and all its subfolders": 'Buscar también en /data/pkg y todas sus subcarpetas',
-    "Needs the switch above on and \"Organize pkgs\" off. The pkgs stay where they are. Games the console already installed are skipped. Restart the console once after the first games are added.":
-      'Necesita el ajuste de arriba activado y "Organizar los pkgs" apagado. Los pkgs se quedan donde están. Los juegos que la consola ya instaló se omiten. Reinicia la consola una vez después de añadir los primeros juegos.',
+    "Needs the switch above on. The pkgs stay where they are, even with \"Organize pkgs\" on. Games the console already installed are skipped. Restart the console once after the first games are added.":
+      'Necesita el ajuste de arriba activado. Los pkgs se quedan donde están, aunque "Organizar los pkgs" esté activado. Los juegos que la consola ya instaló se omiten. Reinicia la consola una vez después de añadir los primeros juegos.',
     'NAS (NFS or SMB)': 'NAS (NFS o SMB)',
     'Not available on this firmware: there is no FUSE patch for it.': 'No disponible en este firmware: no hay parche de FUSE para él.',
     "Experimental on this firmware: its FUSE patch is itemzflow's and was not tried with PS4Mount (it was on 13.52 and 6.72). If the console freezes when the share is mounted, restart it and turn the NAS off.":
