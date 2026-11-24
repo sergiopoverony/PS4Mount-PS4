@@ -4,14 +4,17 @@
 
 **Juega pkgs fake de PS4 desde un USB o desde la memoria de la consola, sin instalarlos.**
 **Play PS4 fake pkgs from a USB drive or from the console's storage, without installing them.**
+**Играй в fake-pkg PS4 с USB или из памяти консоли, без установки.**
 
-**[Español](#español) · [English](#english)**
+**[Español](#español) · [English](#english) · [Русский](#русский)**
 
 PS4Mount PS4 es un port, exclusivo para PS4, de [PS4Mount](https://github.com/gasb07/ps4mount) de **gasb07** (para PS5).
 PS4Mount PS4 is a PS4-only port of [PS4Mount](https://github.com/gasb07/ps4mount) by **gasb07** (for the PS5).
+PS4Mount PS4 — порт [PS4Mount](https://github.com/gasb07/ps4mount) от **gasb07** (для PS5), только для PS4.
 
 *Proyecto no oficial, sin relación con Sony Interactive Entertainment. PlayStation y PS4 son marcas de Sony Interactive Entertainment. Úsalo solo con juegos que te pertenecen.*
 *Unofficial project, not affiliated with Sony Interactive Entertainment. PlayStation and PS4 are trademarks of Sony Interactive Entertainment. Only use it with games you own.*
+*Неофициальный проект, не связан с Sony Interactive Entertainment. PlayStation и PS4 — товарные знаки Sony Interactive Entertainment. Используйте только с играми, которые вам принадлежат.*
 
 ---
 
@@ -22,7 +25,7 @@ PS4Mount es un payload para una PS4 con jailbreak. Pones los pkgs del juego (y s
 
 Además tiene un **panel web** (desde el móvil o el PC) con tu biblioteca, portadas y fichas de cada juego, **envío de juegos desde el PC por la red local** (cada pkg se comprueba antes de enviarlo, para no pasar horas enviando un juego que la consola no puede usar) y **copias en tu Google Drive**: la consola sube tus juegos a tu Drive y los vuelve a bajar, sin PC. Hay una versión sencilla del panel para navegadores antiguos, sin probar todavía en el de la PS4.
 
-Probado en una PS4 con firmware **13.52** y GoldHEN. El panel y las notificaciones están en **español e inglés**: salen en el idioma de la consola (inglés si no es ninguno de los dos), y se puede cambiar en **Ajustes → Idioma**.
+Probado en una PS4 con firmware **13.52** y GoldHEN. El panel y las notificaciones están en **español, inglés y ruso**: salen en el idioma de la consola (inglés si no es ninguno de los tres), y se puede cambiar en **Ajustes → Idioma**.
 
 > [!WARNING]
 > **Versión beta.** Haz una copia de seguridad de tus partidas guardadas antes de usarlo, y [cuéntanos cualquier problema](#problemas-frecuentes) con el log.
@@ -35,7 +38,7 @@ Probado en una PS4 con firmware **13.52** y GoldHEN. El panel y las notificacion
 | --- | --- |
 | Juegos desde un **USB exFAT** (también pkgs de más de 4 GB) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Probado |
 | Juegos desde la **memoria interna** (`/data/PS4Mount`) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Probado |
-| Juegos desde una **NAS** por **SMB o NFS**, solo lectura, con búsqueda en la red | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Probado (firmware 13.52 y 6.72; de 5.05 a 13.50, experimental) |
+| Juegos desde una **NAS** por **SMB o NFS**, solo lectura, con búsqueda en la red | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Probado (firmware 13.52, 6.72, 14.00; de 5.05 a 13.50 y 14.02, experimental) |
 | **Actualizaciones** | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Probado |
 | Juegos **donde están**, sin mover ni renombrar los pkgs (cualquier carpeta de la unidad) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Probado |
 | **DLC** de hasta 256 MB (casi todos: trajes, packs, licencias) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Probado: PS4Mount los instala con el instalador del sistema en segundos, y aparecen en la información del juego |
@@ -272,13 +275,13 @@ Ya está: el panel muestra tu correo y tu espacio. La conexión se guarda en la 
 | Organizar los pkgs en la carpeta ps4 | No | Mueve los pkgs a `ps4/<TITLE_ID>/` para tenerlos ordenados. Apagado (por defecto), los pkgs se usan donde están, con su nombre, sin mover ni renombrar nada; los que PS4Mount ya había organizado vuelven solos a su sitio original (los organizados a mano se quedan en `ps4/`). En la memoria interna se buscan solo `/data/PS4Mount` y `ps4`. |
 | Usar también los pkgs de /data/PS4Mount | Sí | Usa también los pkgs de la memoria interna. |
 | NAS (NFS o SMB) | No | Usa los pkgs de una carpeta compartida en red, **solo lectura** y sin mover ni renombrar nada (con Organizar activado no aparece). Firmware 5.05 a 13.52 (ver abajo). |
-| Idioma | El de la consola | El idioma del panel y de las notificaciones: el de la consola, inglés o español. |
+| Idioma | El de la consola | El idioma del panel y de las notificaciones: el de la consola, inglés, español o ruso. |
 
 Se guardan en `/data/ps4mount/config.txt`. Los ajustes también tienen **Restaurar los archivos de todos los juegos** (o de los elegidos) y **Volver a usar los pkgs restaurados**.
 
 ### Juegos desde una NAS (SMB o NFS)
 
-Los juegos de una **carpeta compartida en la red** (un PC con Windows, Linux o macOS, o una caja NAS como Synology, QNAP o un router con USB) se juegan **desde ahí**, con su actualización y sus DLC, **sin copiarlos ni instalarlos** en la consola. Es **solo lectura**: PS4Mount nunca escribe, renombra ni mueve nada en el recurso. Solo firmware **13.52 y 6.72**.
+Los juegos de una **carpeta compartida en la red** (un PC con Windows, Linux o macOS, o una caja NAS como Synology, QNAP o un router con USB) se juegan **desde ahí**, con su actualización y sus DLC, **sin copiarlos ni instalarlos** en la consola. Es **solo lectura**: PS4Mount nunca escribe, renombra ni mueve nada en el recurso. Firmware **13.52, 6.72 y 14.00** (14.02 experimental).
 
 **1. Comparte la carpeta de los juegos** en el ordenador o el NAS:
 
@@ -309,7 +312,7 @@ Los campos se pueden rellenar también a mano:
 | Usuario y contraseña (SMB) | Vacíos, entra como invitado. La contraseña se guarda en claro en `config.txt`. |
 
 - **Mejor por cable.** PS4Mount pide los datos por adelantado y varios a la vez, así que aprovecha casi toda la red, pero por Wi-Fi las cargas son lentas y alguna textura tarda en aparecer. **Con cable** se juega como desde el disco interno. Si no tienes switch ni un puerto libre en el router, sirve un **cable directo del PC a la consola**: en el PC, comparte su conexión por ese cable (en Linux con NetworkManager: `nmcli connection add type ethernet ifname <interfaz> con-name ps4 ipv4.method shared`; en Windows, "Conexión compartida a Internet" del adaptador Wi-Fi), y en la PS4 configura la red por cable en modo **Fácil**.
-- **Firmware**: probado en **13.52 y 6.72**. En 5.05, 5.07, 9.00, 9.03, 9.04, 9.50, 9.51, 9.60, 10.00, 10.01, 10.50, 10.70, 10.71, 11.00, 11.02, 11.50, 11.52, 12.00, 12.02, 12.50, 12.52, 13.00, 13.02, 13.04 y 13.50 es **experimental**: el parche que activa FUSE es el de itemzflow, sin probar con PS4Mount (el panel lo avisa). En el resto (por ejemplo 7.xx y 8.xx) el ajuste sale desactivado: no hay parche de FUSE conocido.
+- **Firmware**: probado en **13.52, 6.72 y 14.00**. En 5.05, 5.07, 9.00, 9.03, 9.04, 9.50, 9.51, 9.60, 10.00, 10.01, 10.50, 10.70, 10.71, 11.00, 11.02, 11.50, 11.52, 12.00, 12.02, 12.50, 12.52, 13.00, 13.02, 13.04, 13.50 y 14.02 es **experimental**: el parche que activa FUSE es el de itemzflow (hasta 13.50) o el de ps4debug-NG (14.02, mismos offsets que 14.00), sin probar con PS4Mount (el panel lo avisa). En el resto (por ejemplo 7.xx y 8.xx) el ajuste sale desactivado: no hay parche de FUSE conocido.
 - **Solo con Organizar apagado** (el valor por defecto): el recurso nunca se organiza.
 - **SMB** usa SMB2/3. **NFS** prueba NFSv4.2, NFSv4.0 y NFSv3; para que el panel liste las exportaciones, el servidor tiene que tener `rpcbind` (si no, escríbela a mano).
 - Un servidor que **no contesta** (apagado, dirección mal escrita, cortafuegos) se avisa en 3 segundos.
@@ -410,6 +413,7 @@ Para el paso 3 necesitas el [OpenOrbis PS4 Toolchain](https://github.com/OpenOrb
 - **[ShadowMountPlus](https://github.com/drakmor/ShadowMountPlus)** (drakmor): inspiración del original para montar juegos desde USB.
 - **[libsmb2](https://github.com/sahlberg/libsmb2)** y **[libnfs](https://github.com/sahlberg/libnfs)** (Ronnie Sahlberg, LGPL-2.1): los clientes SMB y NFS de la NAS.
 - **[libfuse](https://github.com/libfuse/libfuse)** 2.9 (LGPL-2.1) con el port a PS4 de **[Itemzflow](https://github.com/LightningMods/Itemzflow)** (LightningMods, GPL-3.0): el sistema de ficheros en modo usuario y el parche de 13.52 que activa fusefs.
+- **[thejswaggart](https://github.com/thejswaggart/PS4Mount-PS4)**: el parche FUSE del firmware 14.00.
 
 ## Licencia
 
@@ -424,7 +428,7 @@ PS4Mount is a payload for a jailbroken PS4. Put the game pkgs (with their update
 
 It also has a **web panel** (from a phone or a computer) with your library, artwork and a page per game, **sending games from a computer over the local network** (every pkg is checked before it is sent, so no one spends hours sending a game the console cannot use) and **backups in your Google Drive**: the console uploads your games to your Drive and downloads them back, no computer needed. There is a simpler panel page for older browsers, not yet tested on the PS4's own browser.
 
-Tested on a PS4 on firmware **13.52** with GoldHEN. The panel and the notifications are in **English and Spanish**: they follow the console's language (English for any other), and **Settings → Language** changes it.
+Tested on a PS4 on firmware **13.52** with GoldHEN. The panel and the notifications are in **English, Spanish and Russian**: they follow the console's language (English for any other), and **Settings → Language** changes it.
 
 > [!WARNING]
 > **Beta version.** Back up your saved data before using it, and [tell us about any problem](#troubleshooting) with the log.
@@ -437,7 +441,7 @@ Tested on a PS4 on firmware **13.52** with GoldHEN. The panel and the notificati
 | --- | --- |
 | Games from an **exFAT USB drive** (pkgs over 4 GB too) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Tested |
 | Games from the **console's storage** (`/data/PS4Mount`) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Tested |
-| Games from a **NAS** over **SMB or NFS**, read only, found on the network | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Tested (firmware 13.52 and 6.72; 5.05 to 13.50 experimental) |
+| Games from a **NAS** over **SMB or NFS**, read only, found on the network | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Tested (firmware 13.52, 6.72, 14.00; 5.05 to 13.50 and 14.02 experimental) |
 | **Updates** | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Tested |
 | Games **where they are**, without moving or renaming their pkgs (any folder of the drive) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Tested |
 | **Add-ons (DLC)** up to 256 MB (almost all: costumes, packs, licenses) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Tested: PS4Mount installs them with the system's installer in seconds, and they show in the game's information |
@@ -674,13 +678,13 @@ That is all: the panel shows your email and your space. The connection is kept o
 | Organize pkgs into the ps4 folder | Off | Moves the pkgs to `ps4/<TITLE_ID>/` to keep them in order. Off (the default), the pkgs are used where they are, with their own names, without moving or renaming anything; the ones PS4Mount had organized go back on their own to where they were (the ones you organized by hand stay in `ps4/`). On the console's storage, only `/data/PS4Mount` and `ps4` are searched. |
 | Also use pkgs in the console's /data/PS4Mount | On | Uses the pkgs in the console's storage too. |
 | NAS (NFS or SMB) | Off | Uses the pkgs in a shared network folder, **read only** and without moving or renaming anything (it does not show with Organize on). Firmware 5.05 to 13.52 (see below). |
-| Language | The console's | The language of the panel and the notifications: the console's, English or Spanish. |
+| Language | The console's | The language of the panel and the notifications: the console's, English, Spanish or Russian. |
 
 They are saved in `/data/ps4mount/config.txt`. The settings also have **Restore the files of all games** (or of chosen ones) and **Use restored pkgs again**.
 
 ### Games from a NAS (SMB or NFS)
 
-The games in a **shared folder on the network** (a Windows, Linux or macOS computer, or a NAS box such as Synology, QNAP or a router with USB) are played **from there**, with their update and add-ons, **without copying or installing them** on the console. It is **read only**: PS4Mount never writes to, renames or moves anything in the share. Firmware **13.52 and 6.72** only.
+The games in a **shared folder on the network** (a Windows, Linux or macOS computer, or a NAS box such as Synology, QNAP or a router with USB) are played **from there**, with their update and add-ons, **without copying or installing them** on the console. It is **read only**: PS4Mount never writes to, renames or moves anything in the share. Firmware **13.52, 6.72 and 14.00** (14.02 experimental).
 
 **1. Share the games folder** on the computer or NAS:
 
@@ -711,7 +715,7 @@ The fields can be filled in by hand too:
 | User and password (SMB) | Empty, it goes in as a guest. The password is saved in plain text in `config.txt`. |
 
 - **Wired is best.** PS4Mount asks for the data ahead of time, several pieces at once, so it uses almost all of the network, but over Wi-Fi loading is slow and some textures take a moment. **Over a cable** games play as from the internal drive. With no switch or free router port, a **cable straight from the computer to the console** works too: share the computer's connection on that cable (on Linux with NetworkManager: `nmcli connection add type ethernet ifname <interface> con-name ps4 ipv4.method shared`; on Windows, "Internet Connection Sharing" on the Wi-Fi adapter), and set the PS4's wired network to **Easy**.
-- **Firmware**: tested on **13.52 and 6.72**. On 5.05, 5.07, 9.00, 9.03, 9.04, 9.50, 9.51, 9.60, 10.00, 10.01, 10.50, 10.70, 10.71, 11.00, 11.02, 11.50, 11.52, 12.00, 12.02, 12.50, 12.52, 13.00, 13.02, 13.04 and 13.50 it is **experimental**: the patch that switches FUSE on is itemzflow's, not tried with PS4Mount (the panel says so). On the rest (7.xx and 8.xx, for one) the setting is disabled: there is no known FUSE patch.
+- **Firmware**: tested on **13.52, 6.72 and 14.00**. On 5.05, 5.07, 9.00, 9.03, 9.04, 9.50, 9.51, 9.60, 10.00, 10.01, 10.50, 10.70, 10.71, 11.00, 11.02, 11.50, 11.52, 12.00, 12.02, 12.50, 12.52, 13.00, 13.02, 13.04, 13.50 and 14.02 it is **experimental**: the patch that switches FUSE on is itemzflow's (up to 13.50) or ps4debug-NG's (14.02, same offsets as 14.00), not tried with PS4Mount (the panel says so). On the rest (7.xx and 8.xx, for one) the setting is disabled: there is no known FUSE patch.
 - **Only with Organize off** (the default): the share is never organized.
 - **SMB** uses SMB2/3. **NFS** tries NFSv4.2, NFSv4.0 and NFSv3; for the panel to list the exports, the server needs `rpcbind` (otherwise type the export by hand).
 - A server that **does not answer** (off, a mistyped address, a firewall) is reported in 3 seconds.
@@ -812,7 +816,345 @@ Step 3 needs the [OpenOrbis PS4 Toolchain](https://github.com/OpenOrbis/OpenOrbi
 - **[ShadowMountPlus](https://github.com/drakmor/ShadowMountPlus)** (drakmor): the original's inspiration for mounting games from USB drives.
 - **[libsmb2](https://github.com/sahlberg/libsmb2)** and **[libnfs](https://github.com/sahlberg/libnfs)** (Ronnie Sahlberg, LGPL-2.1): the NAS's SMB and NFS clients.
 - **[libfuse](https://github.com/libfuse/libfuse)** 2.9 (LGPL-2.1) with the PS4 port from **[Itemzflow](https://github.com/LightningMods/Itemzflow)** (LightningMods, GPL-3.0): the user-space file system and the 13.52 patch that enables fusefs.
+- **[thejswaggart](https://github.com/thejswaggart/PS4Mount-PS4)**: the firmware 14.00 FUSE patch.
 
 ## License
 
 GPL-3.0-or-later (see [LICENSE](LICENSE)). If you publish your own version, keep the notices, distribute the changes under the same license and, please, mention gasb07 and link the original project.
+
+---
+
+<a name="русский"></a>
+# Русский
+
+PS4Mount — это payload для PS4 с джейлбрейком. Кладёшь pkg-файлы игры (вместе с обновлением и DLC) на USB-накопитель или во внутреннюю память консоли, и PS4Mount добавляет их на домашний экран, чтобы играть **прямо из pkg, без установки**: не нужно ждать установку и не тратится место на вторую копию.
+
+Также есть **веб-панель** (с телефона или ПК) с библиотекой, обложками и карточкой каждой игры, **отправка игр с ПК по локальной сети** (каждый pkg проверяется перед отправкой, чтобы не тратить часы на передачу игры, которую консоль не сможет использовать) и **резервные копии в Google Drive**: консоль сама загружает игры на ваш Drive и скачивает обратно, без ПК. Есть упрощённая версия панели для старых браузеров, пока не проверена в браузере самой PS4.
+
+Проверено на PS4 с прошивкой **13.52** и GoldHEN. Панель и уведомления на **русском, испанском и английском языках**: по умолчанию на языке консоли (английский, если ни один не подходит), можно сменить в **Настройки → Язык**.
+
+> [!WARNING]
+> **Бета-версия.** Сделайте резервную копию сохранений перед использованием и [сообщайте о любых проблемах](#устранение-неполадок) с логом.
+
+![Панель PS4Mount](docs/panel-main.png)
+
+## Что работает и что нет
+
+| | Статус |
+| --- | --- |
+| Игры с **USB exFAT** (в т. ч. pkg больше 4 ГБ) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено |
+| Игры из **внутренней памяти** (`/data/PS4Mount`) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено |
+| Игры с **NAS** по **SMB или NFS**, только чтение, с поиском в сети | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено (прошивка 13.52, 6.72, 14.00; от 5.05 до 13.50 и 14.02 — экспериментально) |
+| **Обновления** | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено |
+| Игры **на месте**, без перемещения и переименования pkg (в любой папке накопителя) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено |
+| **DLC** до 256 МБ (почти все: костюмы, паки, лицензии) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено: PS4Mount устанавливает их установщиком системы за секунды, видны в информации об игре |
+| DLC больше 256 МБ | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено: устанавливаются автоматически установщиком системы, в фоне (занимают внутреннюю память; можно отключить в Настройках) |
+| **Отправка игр с ПК** по сети с предварительной проверкой | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено (~16 МБ/с по кабелю) |
+| **Удаление** игры на консоли | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено: pkg удаляются тоже, место освобождается |
+| **Резервные копии в Google Drive**: загрузка и скачивание игр с консоли | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено: загрузка на скорости вашего канала, скачивание ~15 МБ/с (максимум PS4) |
+| **Скачивание по ссылкам**: pkg, ZIP или RAR (в т. ч. по частям и с паролем), скачивается и распаковывается консолью | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено (игра 24,6 ГБ в RAR с паролем из 3 частей) |
+| **Расширение браузера**: скачивание pkg, ZIP и RAR идёт на консоль | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено в Brave; Firefox не проверен |
+| **Новая** игра или обновление, пришедшее после игры | <img src="docs/icons/warn.svg" width="14" height="14" alt=""> Нужна **одна перезагрузка** консоли; потом играть можно всегда |
+| Другие прошивки | <img src="docs/icons/warn.svg" width="14" height="14" alt=""> Пока не проверено |
+| **Retail** (не fake) pkg | <img src="docs/icons/no.svg" width="14" height="14" alt=""> Нет |
+| **Homebrew-порты** (игры без CUSA: `SMWR00001`, `SSBU00001`) | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено: играются из pkg как обычная игра, если весят **1 ГБ или больше** |
+| Homebrew-приложения (магазины, эмуляторы…) до 1 ГБ | <img src="docs/icons/ok.svg" width="14" height="14" alt=""> Проверено: из pkg не запускаются, но **Отправка игр** отправляет и устанавливает их на консоль |
+
+## Требования
+
+- PS4 с джейлбрейком и **GoldHEN** (BinLoader включён, порт 9090).
+- Способ загрузки пейлоадов: **Payloader/Launchpad** от GoldHEN (рекомендуется), Payload Guest, или строка PS4Mount в `/data/GoldHEN/payloads.ini` для автозапуска.
+- **Fake** pkg от PS4 (`CUSA…`).
+- Для игры с USB: накопитель в формате **exFAT**.
+
+## Использование
+
+1. **Скачайте** `ps4mount-ps4.bin` из [Releases](https://github.com/Vld439/PS4Mount-PS4/releases) и скопируйте в **`/data/payloads/`** на консоли (по FTP или как обычно копируете пейлоады).
+2. **После каждой загрузки** запускайте PS4Mount (Payloader/Launchpad от GoldHEN, Payload Guest или AutoRun). Появится уведомление `PS4Mount <версия> запущен. Панель: http://192.168.1.50:8770` с IP вашей консоли.
+3. **Добавьте игры** одним из способов:
+   - **На USB:** скопируйте pkg **куда угодно** на накопителе (например, в папку `PS4Mount` или по папке на игру) и подключите к PS4. PS4Mount обходит весь диск и группирует по заголовку внутри pkg (игра, обновление и DLC), ничего не перемещая и не переименовывая; скрытые и системные папки пропускаются.
+   - **С ПК:** через **Отправка игр** в панели (см. ниже).
+   - **Во внутреннюю память:** pkg в `/data/PS4Mount` (по FTP или через Отправку игр). `/data/pkg` остаётся за обычным установщиком: PS4Mount его не трогает.
+4. Дождитесь уведомлений: `usb0: найдена(о) 1 игра(ы), 1 новая(ые) или обновлённая(ые)` → `Добавление 1/1: <игра>` → `<игра> добавлена. Перезагрузите консоль один раз`.
+5. **Перезагрузите консоль один раз**, снова запустите PS4Mount и играйте с домашнего экрана.
+
+При включённой настройке **Организовать pkg в папку ps4** (выключена по умолчанию) PS4Mount упорядочивает используемые pkg в папку по игре на том же диске (это переименование, ничего не копируется):
+
+```
+ps4/CUSAxxxxx/app.pkg                           игра
+ps4/CUSAxxxxx/patch.pkg                         обновление
+ps4/CUSAxxxxx/addcont/CUSAyyyyy/<LABEL>/ac.pkg  DLC
+```
+
+Если включили — сохраняйте эту структуру. Для добавления новых игр кладите их туда, где ведётся поиск.
+
+Если **Организовать pkg в папку ps4** выключена (по умолчанию) — PS4Mount ничего не перемещает и не переименовывает: файлы `.pkg` используются **там, где лежат**, в любой папке накопителя (в том числе уже лежащие в `ps4/`), группируются по заголовку (игра, обновление и DLC). **Объединённые pkg (игра+обновление)** работают: отдельное обновление старше игры не используется.
+
+При выключении настройки игры, которые PS4Mount **уже организовал**, возвращаются на прежнее место с оригинальными именами (PS4Mount помнит их в `origin.txt` каждой игры) и используются оттуда; организованные вручную остаются на месте. В первый раз нужна одна перезагрузка, как при добавлении игры.
+
+### На консоли
+
+Игра появляется на домашнем экране как обычная, а PS4Mount сообщает обо всём уведомлениями: при запуске, при обнаружении и добавлении игр, если диск игры отключён, при удалении и при работе с Google Drive.
+
+![Rayman на домашнем экране с уведомлением PS4Mount](docs/console-home-es.jpg)
+
+![Уведомления PS4Mount](docs/console-notices-es.jpg)
+
+### Зачем нужна перезагрузка
+
+Консоль запускает игру только когда её фоновый сервис загрузок (BGFT) знает задачу игры, а он считывает задачи только при загрузке. PS4Mount записывает задачу при добавлении игры, поэтому для первого запуска нужна перезагрузка. Выход из аккаунта и завершение реальной установки — ни то ни другое не помогает. DLC перезагрузки не требуют.
+
+### Панель
+
+Откройте `http://<IP PS4>:8770` в браузере телефона или ПК **в той же сети**. Есть упрощённая версия для старых браузеров (`/legacy`), пока не проверена в браузере самой PS4.
+
+| Статус | Значение |
+| --- | --- |
+| Готова | В библиотеке, можно играть |
+| Перезагрузите | Добавлена в этой сессии: перезагрузите один раз |
+| Запущена | Игра открыта |
+| Добавляется | Идёт добавление |
+| Не в библиотеке | Убрана из библиотеки; pkg остаются на диске |
+| Диск не подключён | Накопитель не подключён: подключите для игры |
+| Установлена на консоли | Есть обычная установка этой игры: PS4Mount её не трогает |
+| На другом диске | Та же игра есть на другом подключённом диске, который и используется |
+
+У каждой игры есть карточка (нажмите на обложку) с версией, нужной прошивкой, размером и расположением.
+
+![Карточка игры](docs/panel-game.png)
+
+Кнопки: **Убрать из библиотеки** (убирает из консоли, сохраняет pkg), **Добавить в библиотеку**, **Поиск игр**, **Отправка игр**, **Настройки**, **Лог**, **Остановить** и в углу **Подключить Google Drive** (см. ниже).
+
+В карточке игры также есть **Восстановить исходные файлы**: отменяет то, что PS4Mount сделал с файлами. Убирает игру из консоли и возвращает pkg на прежнее место с прежними именами (например, `ps4/CUSA00092/app.pkg` снова становится `PS4Mount/Flower/Flower.pkg`). Нужно для возврата файлов, например, чтобы установить игру обычным способом. Ничего не удаляется, и PS4Mount эти pkg больше не берёт.
+
+### Отправка игр с ПК
+
+В панели, **Отправка игр**: перетащите pkg и выберите место назначения (USB или внутренняя память).
+
+- Каждый pkg **проверяется перед отправкой** за секунду по первым 4 МБ: fake ли это PS4 pkg, игра/обновление/DLC, полный ли он и хватит ли места. Отправляются только те, что консоль может использовать. Pkg для более новой прошивки тоже отправляется, с предупреждением: заработает только с бэкпортом.
+- Сначала отправляются игры, потом обновления, потом DLC.
+- Прерванная или сбойная отправка не оставляет неполных файлов, и можно нажать **Отправить снова**.
+- По прибытии игра добавляется автоматически.
+
+![Отправка игр](docs/panel-send.png)
+
+### Скачивание по ссылкам
+
+В панели, **Скачивание по ссылкам**: вставьте ссылки по одной на строку, выберите куда сохранить и нажмите **Скачать**. Консоль скачает сама: можно закрыть панель или выключить ПК.
+
+- Подходит **pkg**, **ZIP** или **RAR**, в том числе по частям (`название.part1.rar`, `название.part2.rar`… или `название.rar`, `название.r00`, `название.r01`…). Вставляйте все части в любом порядке: PS4Mount объединяет их в одну загрузку и предупреждает, если чего-то не хватает.
+- Ссылки должны быть **прямыми**: те, по которым сразу начинается скачивание. Страница с кнопкой скачивания (Mega, MediaFire и т. п.) не подходит, PS4Mount об этом скажет. Если в ссылке нет имени файла, добавьте `|` и имя: `https://…/download?id=123 | игра.pkg`.
+- RAR или ZIP **распаковывается по ходу скачивания**, извлекаются только pkg (остальное, .txt, .nfo и т. д., пропускается).
+- По первым 4 МБ каждого pkg делается **та же проверка**, что и при отправке с ПК: неподходящий pkg останавливает скачивание, не тратя трафик.
+- Скачивание идёт несколькими соединениями, консоль не уходит в спящий режим. При обрыве связи — продолжает автоматически; при перезапуске PS4Mount — тоже.
+- По завершении pkg оказываются в папке с именем загрузки внутри `PS4Mount` на диске, и игра добавляется автоматически.
+- RAR (5) **с паролем**, в т. ч. по частям и с зашифрованным списком файлов: введите его в поле **Пароль** при добавлении загрузки, или нажмите **Повторить** и введите. Не нужен, если уже открывал другую загрузку (хранятся в `/data/ps4mount/passwords.txt`) или если это сайт в квадратных скобках в начале имени (`[САЙТ]-игра.part1.rar`): такие пробуются автоматически. Неверный пароль определяется сразу, без скачивания остального.
+- ZIP с паролем тоже открывается, классический или AES.
+- Не поддерживается: RAR4 с паролем, **7z**, ссылки, требующие авторизации.
+
+| ![Панель скачивает RAR из 3 частей и распаковывает](docs/links-panel-es.png) | ![Уведомление на консоли при начале скачивания](docs/links-console-es.jpg) |
+|---|---|
+
+### Расширение браузера
+
+Необязательно, для ПК: с ним не нужно искать прямую ссылку. Нажимаете **Скачать** на любом сайте, как обычно, и скачивание идёт на консоль вместо ПК.
+
+- **Установка** (ещё нет в магазинах): скачайте `ps4mount-extension.zip` из [Releases](https://github.com/Vld439/PS4Mount-PS4/releases) и распакуйте. В Chrome, Brave или Edge: `chrome://extensions` → включите **Режим разработчика** → **Загрузить распакованное** → выберите папку. В Firefox: `about:debugging#/runtime/this-firefox` → **Загрузить временное дополнение** → файл `manifest.json` (пропадает при закрытии Firefox).
+- Нажмите иконку, введите адрес консоли, нажмите **Подключить** (браузер попросит разрешение) и выберите куда сохранять.
+- Одиночный **pkg**, **ZIP** или **RAR** идёт на консоль сразу. **Части RAR** собираются в **корзине** иконки: скачайте все и нажмите **Отправить**, с паролем если нужно. Всё остальное (.exe, .pdf…) скачивается на ПК как обычно.
+- Отправляется финальный адрес файла (после перенаправлений) и скачивание на ПК отменяется, так что одноразовые ссылки тоже работают.
+- **Экспериментально:** скачивание через браузер тоже. Консоль продолжает качать сама, а браузер передаёт ей часть блоков, с куками, по локальной сети (порт 8771). Помогает только с сайтами, не ограничивающими скорость на соединение, и пока браузер открыт; при закрытии консоль продолжает сама.
+- На Android Chrome и iPhone расширений нет: с телефона используйте **Скачивание по ссылкам** в панели.
+
+| ![Корзина с 3 частями RAR, готовая к отправке](docs/extension-basket-es.png) | ![Уведомление браузера при сохранении части в корзину](docs/extension-notice-es.png) |
+|---|---|
+
+### Резервные копии в Google Drive
+
+Необязательно. Ваши игры на **вашем собственном Google Drive**, чтобы освободить место или сохранить их, и скачать обратно на консоль когда угодно. Консоль загружает и скачивает сама: не нужен ПК, панель работает с телефона.
+
+- **Копия в Drive** (вверху, после подключения): загружает всю библиотеку, каждую игру с обновлением и DLC. Уже имеющееся в Drive пропускается.
+- **Отправить в Drive**, в карточке игры: загружает эту игру.
+- **Google Drive** (в углу): ваш аккаунт, занятое место и ваши игры в Drive, каждая с кнопками **Скачать** (выбираете накопитель: USB или внутреннюю память) и **Удалить из Drive** (в корзину Drive; на консоли ничего не меняется).
+
+![Окно Google Drive](docs/panel-drive.png)
+
+Во время передачи панель показывает игру, процент, скорость и оставшееся время, а PS4 показывает на экране уведомления при старте, на 25, 50 и 75 % и по завершении. **Консоль не уходит в спящий режим** во время передачи, можно играть или использовать панель. При обрыве (сеть, остановка PS4Mount, выключение) **продолжает автоматически** с того места при следующей загрузке PS4Mount. Каждый файл проверяется по MD5 при загрузке и скачивании: повреждённый файл никогда не принимается за хороший.
+
+При скачивании игра попадает в `PS4Mount/<Игра> [CUSAxxxxx]/` на выбранном накопителе, PS4Mount добавляет её автоматически (с перезагрузкой). Игра, уже находящаяся в библиотеке, не скачивается поверх.
+
+В Drive файлы хранятся в папке `PS4Mount/<Игра> [CUSAxxxxx]/` как `game.pkg`, `update.pkg` и `addon-….pkg`. PS4Mount использует разрешение `drive.file` от Google: **видит только файлы, которые сам создал**, ничего другого из вашего Drive (поэтому и не видит pkg, загруженные вами вручную). См. [PRIVACY.md](PRIVACY.md).
+
+| | Измеренная скорость (PS4 13.52, по кабелю) |
+| --- | --- |
+| Загрузка | Скорость вашего канала (2,8 МБ/с на линии 2,8 МБ/с: 7,2 ГБ за 45 мин) |
+| Скачивание | ~15 МБ/с, максимум PS4 (12 соединений): 60 ГБ за ~1 ч 10 мин |
+
+#### Подключение Google Drive (один раз)
+
+PS4Mount не содержит учётных данных Google: каждый пользователь использует **свои собственные**, которые остаются только на его консоли. Создаются бесплатно за несколько минут:
+
+1. Откройте **[console.cloud.google.com](https://console.cloud.google.com/)** со своим аккаунтом Google, нажмите на выбор проекта (вверху слева) → **Новый проект**, название **PS4Mount** → **Создать**. Убедитесь, что вверху выбран PS4Mount.
+2. В строке поиска вверху наберите **Google Drive API** → **Включить** (если уже включён, будет написано "API включён" и кнопка **Управление**).
+3. Меню <img src="docs/icons/menu.svg" width="14" height="14" alt="(меню)"> → **API и сервисы** → **Экран согласия OAuth** (Google Auth Platform) → **Начать**: название приложения **PS4Mount**, ваша почта, аудитория **Внешняя**, ваша контактная почта, принять политику → **Создать**. Не загружайте логотип (с логотипом Google потребует верификацию приложения).
+4. **Клиенты** → **Создать клиента** → тип **TV и устройства с ограниченным вводом** (не "Настольное приложение" и не "Веб-приложение": с ними консоль не сможет войти) → название **PS4Mount console** → **Создать**. Скопируйте **ID клиента** (заканчивается на `.apps.googleusercontent.com`) и **Секрет клиента** (скачайте JSON: секрет может больше не показаться).
+5. **Аудитория** → **Тестовые пользователи** → **Add users** → ваша почта Google → **Сохранить**. (Приложение остаётся в состоянии "Тест": публиковать его не нужно.)
+6. *(Необязательно)* **Доступ к данным** → **Добавить или удалить области** → отметьте `…/auth/drive.file` → **Обновить** → **Save**.
+7. В панели PS4Mount: **Подключить Google Drive** → вставьте ID и секрет → **Сохранить** → **Подключить**. Появится код: на телефоне или ПК откройте **google.com/device**, введите его с тестовым аккаунтом и разрешите. Google предупредит, что приложение не верифицировано: это ваше собственное, нажмите **Продолжить**.
+
+Готово: панель покажет вашу почту и место. Подключение сохраняется на консоли и переживает перезагрузки. Google может попросить приложения в состоянии "Тест" подключиться заново через некоторое время: если это случится, PS4Mount покажет **на экране PS4** новый код для ввода на google.com/device, а передача продолжится после. **Отключить** (в окне Google Drive) убирает доступ в Google и стирает его с консоли; также можно убрать из аккаунта Google (Безопасность → Сторонние подключения).
+
+### Настройки
+
+| Настройка | По умолчанию | Значение |
+| --- | --- | --- |
+| Папки для поиска pkg | `/PS4Mount` | Используется только с **Организовать** вкл.: папки на каждом диске для поиска новых pkg, по одной на строку (`/` — корень: все игровые pkg из корня переместятся в `ps4/`). Просматриваются до двух уровней подпапок. `ps4` нельзя. Выкл. (по умолчанию) — обходится весь диск, без перемещения и переименования. |
+| Добавлять новые игры группами / Игр в группе | Да / 5 | Добавляет много игр группами, чтобы не перегружать консоль. |
+| Устанавливать DLC | Да | Устанавливает DLC (см. выше). |
+| Устанавливать также большие DLC | Да | DLC больше 256 МБ тоже устанавливаются, в фоне: игра видит только установленный системой DLC. Занимают внутреннюю память; перед установкой проверяется наличие места. Выкл. — не используются. |
+| Организовать pkg в папку ps4 | Нет | Перемещает pkg в `ps4/<TITLE_ID>/` для порядка. Выкл. (по умолчанию) — pkg используются на месте, со своими именами; те, что PS4Mount уже организовал, возвращаются автоматически на прежнее место (организованные вручную остаются в `ps4/`). Во внутренней памяти обходятся только `/data/PS4Mount` и `ps4`. |
+| Использовать также pkg из /data/PS4Mount | Да | Также использует pkg из внутренней памяти. |
+| NAS (NFS или SMB) | Нет | Использует pkg из сетевой папки, **только чтение**, без перемещения и переименования (не показывается при вкл. Организовать). Прошивки от 5.05 до 14.02 (см. ниже). |
+| Язык | Как у консоли | Язык панели и уведомлений: как у консоли, английский, испанский или русский. |
+
+Сохраняются в `/data/ps4mount/config.txt`. В настройках также есть **Восстановить файлы всех игр** (или выбранных) и **Снова использовать восстановленные pkg**.
+
+### Игры с NAS (SMB или NFS)
+
+Игры из **сетевой папки** (ПК с Windows, Linux или macOS, или NAS-устройство вроде Synology, QNAP или роутера с USB) играются **оттуда**, с обновлением и DLC, **без копирования и установки** на консоль. **Только чтение**: PS4Mount никогда не пишет, не переименовывает и не перемещает ничего в ресурсе. Прошивки **13.52, 6.72 и 14.00** (14.02 — экспериментально).
+
+**1. Расшарьте папку с играми** на ПК или NAS:
+
+| Устройство | Как |
+| --- | --- |
+| **Windows** | ПКМ на папке → Свойства → Доступ → Расширенный общий доступ → отметьте **Открыть общий доступ**. Windows потребует учётную запись: в панели введите имя пользователя и пароль Windows. Если консоль не находит ПК, переключите сеть на **Частную**. |
+| **macOS** | Системные настройки → Основные → Общий доступ → включите **Общий доступ к файлам** и добавьте папку. В Параметрах включите SMB для своего пользователя. |
+| **Linux** | Расшарьте папку через **Samba** (только чтение, гостевой доступ) или **NFS** (`/etc/exports`) и пропустите адрес консоли в файрволе. |
+| **NAS** | Включите общий доступ к файлам по **SMB** (или NFS) в настройках и дайте права на чтение папки. |
+
+**2. В панели**, в **Настройки → NAS**, нажмите **Поиск серверов в сети**. Консоль проверит всю сеть за несколько секунд и покажет список устройств с общим доступом. Выберите одно — появятся **общие папки**: выберите нужную и нажмите **Сохранить**. Если сервер требует учётную запись, панель скажет об этом: введите **Пользователь** и **Пароль** и нажмите **Показать ресурсы сервера**.
+
+![Настройки → NAS: ПК найден в сети, его общие папки](docs/panel-nas.png)
+
+Игры появятся в библиотеке как с USB (в первый раз — перезагрузите консоль). В карточке, **На** покажет **NAS**:
+
+![Marvel's Spider-Man запущен с NAS](docs/panel-nas-game.png)
+
+Поля можно заполнить и вручную:
+
+| Поле | Что вводить |
+| --- | --- |
+| Протокол | **SMB** (Windows, macOS, большинство NAS) или **NFS** (Linux, NAS). |
+| Сервер | IP компьютера или NAS (`192.168.0.19`). |
+| Экспорт (NFS) или ресурс (SMB) | Для SMB — имя ресурса (`games`). Для NFS — экспортированный путь (`/volume1/games`). |
+| Папка внутри | Необязательно: подпапка, чтобы не обходить весь ресурс. |
+| Порт | Необязательно: оставьте пустым (445 для SMB, 2049 для NFS). |
+| Пользователь и пароль (SMB) | Пусто — входит как гость. Пароль хранится открытым текстом в `config.txt`. |
+
+- **Лучше по кабелю.** PS4Mount запрашивает данные заранее и несколько одновременно, так что сеть используется почти полностью, но по Wi-Fi загрузки медленные. **По кабелю** играется как с внутреннего диска. Если нет свитча или свободного порта роутера — подойдёт **прямой кабель от ПК к консоли**: на ПК раздайте интернет через этот кабель (в Linux с NetworkManager: `nmcli connection add type ethernet ifname <интерфейс> con-name ps4 ipv4.method shared`; в Windows — «Общий доступ к подключению к Интернету» Wi-Fi-адаптера), на PS4 настройте проводную сеть в режиме **Простая**.
+- **Прошивки**: проверено на **13.52, 6.72 и 14.00**. На 5.05, 5.07, 9.00, 9.03, 9.04, 9.50, 9.51, 9.60, 10.00, 10.01, 10.50, 10.70, 10.71, 11.00, 11.02, 11.50, 11.52, 12.00, 12.02, 12.50, 12.52, 13.00, 13.02, 13.04, 13.50 и 14.02 — **экспериментально**: патч, включающий FUSE, от itemzflow (до 13.50) или ps4debug-NG (14.02, те же офсеты, что и 14.00), не проверен с PS4Mount (панель об этом предупреждает). На остальных (например 7.xx и 8.xx) настройка отключена: известного патча FUSE нет.
+- **Только с выключенной Организацией** (по умолчанию): ресурс никогда не организуется.
+- **SMB** использует SMB2/3. **NFS** пробует NFSv4.2, NFSv4.0 и NFSv3; чтобы панель могла показать экспорты, на сервере должен быть `rpcbind` (иначе введите вручную).
+- Сервер, который **не отвечает** (выключен, неправильный адрес, файрвол), определяется за 3 секунды.
+- **Если сеть оборвётся** во время игры (кабель выдернут, ПК перезагрузился), игра **встаёт на паузу** и продолжается сама, когда связь восстановится: PS4Mount переподключается и заново открывает файлы. Ждёт до 2 минут; после этого игра получает ошибку и может вылететь.
+- **Смена** протокола, сервера или папки не требует перезагрузки: переподключение мгновенное.
+- Ресурс монтируется в `/mnt/usb0/ps4mount/nas-<n>` — путь, который принимает установщик системы. **USB подключать не нужно.**
+- **BinLoader должен быть включён** в меню GoldHEN: если PS4Mount стартует автоматически с консолью (AutoRun), этот процесс не может открыть устройства FUSE (ограничение GoldHEN), поэтому PS4Mount перезагружает себя через BinLoader (порт 9090) за несколько секунд. С выключенным BinLoader игры с USB и внутренней памяти работают, а NAS не монтируется.
+- **Повторная загрузка PS4Mount в той же сессии** монтирует ресурс в другую папку (`nas-2`, `nas-3`…), игры NAS просят перезагрузку. После нескольких загрузок в одной сессии устройства FUSE заканчиваются: перезагрузите консоль.
+- При **удалении игры на консоли** pkg на NAS не удаляются (они ваши): игра уходит из библиотеки, файлы остаются.
+
+### Удаление игр
+
+- **Удаление на консоли** (Options → Удалить, или Настройки → Хранилище): удаляет игру **и её pkg** (игру, обновление и DLC) и освобождает место. Только при подтверждении удаления, и только папка этой игры.
+- **Убрать из библиотеки** в панели: убирает игру из консоли и **сохраняет pkg**, чтобы добавить снова через **Добавить в библиотеку**.
+
+Пока открыты экраны удаления, PS4Mount отмонтирует папки игр, так что системное удаление никогда не добирается до pkg: их удаляет PS4Mount, и только папку этой игры.
+
+С выключенной «Организацией» **удаление на консоли не удаляет ваши pkg**: игра уходит из библиотеки и помечается как удалённая, а файлы `.pkg` остаются на месте. **Восстановить исходные файлы** в этом режиме не применяется.
+
+### Полезно знать
+
+- **Запускайте PS4Mount после каждой загрузки.** Без него игры не могут запуститься (остаются на домашнем экране).
+- **Закрывайте игры PS4Mount перед переводом консоли в спящий режим**: спящий режим отключает USB.
+- Если **отключить USB**, игры остаются на домашнем экране, а панель показывает *Диск не подключён*. При подключении дождитесь уведомления `usb0: … найдена(о)` перед запуском.
+- Если GoldHEN загружает PS4Mount автоматически и вы запускаете его снова, появится `PS4Mount … уже запущен`: это нормально, второй закрывается сам.
+- Панель не имеет пароля: любой в вашей локальной сети может её открыть. Не выставляйте порт 8770 в интернет.
+
+<a name="устранение-неполадок"></a>
+### Устранение неполадок
+
+| Проблема | Что делать |
+| --- | --- |
+| CE-32930-7 при запуске только что добавленной игры | Перезагрузите консоль один раз и снова запустите PS4Mount. |
+| «Невозможно запустить приложение» | Убедитесь, что PS4Mount запущен и диск игры подключён (PS4Mount предупреждает, если нет). |
+| Панель не открывается | Введите **полный** адрес из уведомления, с `http://` и `:8770`, из той же сети. Панель не поддерживает https: если браузер переключает на `https://`, исправьте вручную (или отключите режим «Только HTTPS» для этого адреса). |
+| Некоторые игры не запускаются на 7.xx, даже установленные обычным способом | Включите **AIO fix** в настройках GoldHEN. |
+| Pkg не добавляется | Посмотрите лог (панель → **Лог**): там написано почему (не fake, нужна другая прошивка, неполный…). |
+| Ссылки: «ссылка открывает веб-страницу» | Это не прямая ссылка: на странице скачивания скопируйте ссылку кнопки, начинающей скачивание (или ту, что показывает ваш браузер в Загрузках). |
+| Ссылки: «сервер отклонил ссылку (403)» | Многие ссылки устаревают или работают для одного браузера: получите новую и нажмите **Повторить** или вставьте заново. |
+| Игра вылетает или теряет сохранения и при обычной установке | Дело в pkg (или бэкпорте), не в PS4Mount: попробуйте другой дамп. |
+| Google Drive: `invalid_client` при подключении | Клиент не типа **TV и устройства с ограниченным вводом**, или ID/секрет неправильно скопированы: создайте клиента этого типа и вставьте заново. |
+| Google Drive: «доступ заблокирован» или «access_denied» | Добавьте свою почту в **Аудитория → Тестовые пользователи** проекта. |
+| Google Drive: скачивание говорит «пришёл повреждённым» | PS4Mount уже пробовал дважды с нуля; нажмите Скачать позже. |
+
+Для сообщения о проблеме откройте [issue](https://github.com/Vld439/PS4Mount-PS4/issues) с версией PS4Mount, прошивкой, игрой (`CUSA…`), описанием и логом (панель → **Лог**, или `/data/ps4mount/log.txt` по FTP). Не прикладывайте pkg и ссылки на них.
+
+### Файлы на консоли
+
+| Файл | Назначение |
+| --- | --- |
+| `/data/ps4mount/log.txt` | Лог |
+| `/data/ps4mount/config.txt` | Настройки |
+| `/data/ps4mount/stop` | Пустой: останавливает PS4Mount |
+| `/data/ps4mount/klog_all` | Пустой: копирует весь системный лог в лог PS4Mount (диагностика) |
+| `/data/ps4mount/drive_client.txt` | Ваш ID клиента и секрет Google |
+| `/data/ps4mount/drive.txt` | Подключение к вашему аккаунту Google |
+| `/data/ps4mount/drive_queue.txt`, `drive_upload.txt` | Незаконченные передачи Drive (для продолжения) |
+| `<папка поиска>/.ps4mount-drive/` | Незаконченные скачивания из Drive |
+| `/data/ps4mount/links_queue.txt` | Ожидающие загрузки по ссылкам (со ссылками и паролем) |
+| `/data/ps4mount/passwords.txt` | Пароли, открывшие архив, пробуются на следующих |
+| `/mnt/usb0/ps4mount/nas-<n>` | Точка монтирования сетевого ресурса внутри USB-раздела (имя хранится в `/data/ps4mount/nas-mnt`) |
+| `<папка поиска>/.ps4mount-links/` | Незаконченные загрузки по ссылкам |
+| `/system_data/ps4mount/` | Внутренние папки игр |
+
+## Сборка
+
+```bash
+# 1. Тесты (необязательно)
+bash test/run.sh        # тесты на ПК (SANITIZE=1 для ASan/UBSan)
+bash test/policy.sh     # правила проекта
+cd test/web && npm test # панель
+
+# 2. Payload (.elf и .bin)
+PS4_PAYLOAD_SDK=/путь/к/sdk bash build.sh
+
+# 3. PKG панельного приложения (включает payload из шага 2)
+cd panel-app
+export OO_PS4_TOOLCHAIN=/путь/к/OpenOrbis-PS4-Toolchain
+bash build.sh
+```
+
+Для шага 2 нужен [ps4-payload-sdk](https://github.com/ps4-payload-dev/sdk), **собранный из git**: релиз v0.9 не запускается на 13.52 (его рантайм знает прошивки до 13.50). CI использует коммит из `SDK_COMMIT` в `.github/workflows/build.yml`.
+
+Для шага 3 нужен [OpenOrbis PS4 Toolchain](https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain). Если `libc.prx` или `libSceFios2.prx` не находятся в `samples/hello_world/sce_module/`, скопируйте их из `samples/piglet/sce_module/`.
+
+[AI-WORKFLOW.md](AI-WORKFLOW.md) объясняет, как работать над PS4Mount с ИИ-помощником.
+
+## Благодарности
+
+- **[PS4Mount](https://github.com/gasb07/ps4mount)** от **gasb07**: проект, из которого вырос этот порт (чтение pkg, файлы установки, монтирование, панель). Его история — в оригинальном проекте и в git-истории этого репозитория.
+- **[LibOrbisPkg](https://github.com/maxton/LibOrbisPkg)** (maxton, LGPL-3.0): ключ fake-pkg (`src/keys.h`) и справка по формату.
+- **[ps4-payload-sdk](https://github.com/ps4-payload-dev/sdk)** (John Törnblom, GPL-3.0-or-later): тулчейн и рантайм пейлоада.
+- **flatz**: интерфейс BGFT, задокументированный в [ps4_stub_lib_maker_v2](https://github.com/flatz/ps4_stub_lib_maker_v2), и **[ps4-ipi](https://github.com/0x199/ps4-ipi)** как пример использования — для установки DLC.
+- **[SQLite](https://sqlite.org)** (общественное достояние): чтение базы данных консоли.
+- **[BearSSL](https://bearssl.org)** (Thomas Pornin, MIT): TLS для связи консоли с Google Drive и сайтами по ссылкам.
+- **[libarchive](https://www.libarchive.org)** (BSD-2-Clause) и **[zlib](https://zlib.net)** (лицензия zlib): чтение RAR и ZIP при скачивании.
+- **Список центров сертификации Mozilla** (MPL-2.0): корневые сертификаты, которым доверяет консоль для ссылок.
+- **[ShadowMountPlus](https://github.com/drakmor/ShadowMountPlus)** (drakmor): вдохновение оригинала для монтирования игр с USB.
+- **[libsmb2](https://github.com/sahlberg/libsmb2)** и **[libnfs](https://github.com/sahlberg/libnfs)** (Ronnie Sahlberg, LGPL-2.1): SMB- и NFS-клиенты NAS.
+- **[libfuse](https://github.com/libfuse/libfuse)** 2.9 (LGPL-2.1) с портом на PS4 от **[Itemzflow](https://github.com/LightningMods/Itemzflow)** (LightningMods, GPL-3.0): файловая система в пространстве пользователя и патч 13.52, включающий fusefs.
+- **[thejswaggart](https://github.com/thejswaggart/PS4Mount-PS4)**: патч FUSE прошивки 14.00.
+
+## Лицензия
+
+GPL-3.0-or-later (см. [LICENSE](LICENSE)). Если публикуете свою версию — сохраняйте уведомления, распространяйте изменения под той же лицензией и, пожалуйста, упоминайте gasb07 и давайте ссылку на оригинальный проект.
