@@ -376,14 +376,26 @@ Para informar de un problema, abre un [issue](https://github.com/Vld439/PS4Mount
 
 ## Compilar
 
-```
+```bash
+# 1. Tests (opcional)
 bash test/run.sh        # tests en el ordenador (SANITIZE=1 para ASan/UBSan)
 bash test/policy.sh     # reglas del proyecto
 cd test/web && npm test # el panel
-PS4_PAYLOAD_SDK=/ruta/al/sdk bash build.sh   # build/ps4mount-ps4.elf y .bin
+
+# 2. Payload (.elf y .bin)
+PS4_PAYLOAD_SDK=/ruta/al/sdk bash build.sh
+
+# 3. Panel app PKG (incluye el payload del paso 2)
+cd panel-app
+export OO_PS4_TOOLCHAIN=/ruta/al/OpenOrbis-PS4-Toolchain
+bash build.sh
 ```
 
-Necesitas el [ps4-payload-sdk](https://github.com/ps4-payload-dev/sdk) **compilado desde git**: la release v0.9 no arranca en 13.52 (su runtime solo conoce hasta 13.50). La CI usa el commit indicado en `SDK_COMMIT` de `.github/workflows/build.yml`. [AI-WORKFLOW.md](AI-WORKFLOW.md) explica cómo trabajar en PS4Mount con un asistente de IA.
+Para el paso 2 necesitas el [ps4-payload-sdk](https://github.com/ps4-payload-dev/sdk) **compilado desde git**: la release v0.9 no arranca en 13.52 (su runtime solo conoce hasta 13.50). La CI usa el commit indicado en `SDK_COMMIT` de `.github/workflows/build.yml`.
+
+Para el paso 3 necesitas el [OpenOrbis PS4 Toolchain](https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain). Si `libc.prx` o `libSceFios2.prx` no se encuentran en `samples/hello_world/sce_module/`, cópialos desde `samples/piglet/sce_module/`.
+
+[AI-WORKFLOW.md](AI-WORKFLOW.md) explica cómo trabajar en PS4Mount con un asistente de IA.
 
 ## Créditos
 
@@ -766,14 +778,26 @@ To report a problem, open an [issue](https://github.com/Vld439/PS4Mount-PS4/issu
 
 ## Building
 
-```
+```bash
+# 1. Tests (optional)
 bash test/run.sh        # tests on the computer (SANITIZE=1 for ASan/UBSan)
 bash test/policy.sh     # the project's rules
 cd test/web && npm test # the panel
-PS4_PAYLOAD_SDK=/path/to/sdk bash build.sh   # build/ps4mount-ps4.elf and .bin
+
+# 2. Payload (.elf and .bin)
+PS4_PAYLOAD_SDK=/path/to/sdk bash build.sh
+
+# 3. Panel app PKG (embeds the payload from step 2)
+cd panel-app
+export OO_PS4_TOOLCHAIN=/path/to/OpenOrbis-PS4-Toolchain
+bash build.sh
 ```
 
-You need the [ps4-payload-sdk](https://github.com/ps4-payload-dev/sdk) **built from git**: the v0.9 release does not start on 13.52 (its runtime knows firmwares up to 13.50). CI uses the commit in `SDK_COMMIT` of `.github/workflows/build.yml`. [AI-WORKFLOW.md](AI-WORKFLOW.md) explains how to work on PS4Mount with an AI assistant.
+Step 2 needs the [ps4-payload-sdk](https://github.com/ps4-payload-dev/sdk) **built from git**: the v0.9 release does not start on 13.52 (its runtime knows firmwares up to 13.50). CI uses the commit in `SDK_COMMIT` of `.github/workflows/build.yml`.
+
+Step 3 needs the [OpenOrbis PS4 Toolchain](https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain). If `libc.prx` or `libSceFios2.prx` are not found in `samples/hello_world/sce_module/`, copy them from `samples/piglet/sce_module/`.
+
+[AI-WORKFLOW.md](AI-WORKFLOW.md) explains how to work on PS4Mount with an AI assistant.
 
 ## Credits
 
