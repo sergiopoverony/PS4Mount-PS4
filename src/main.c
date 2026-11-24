@@ -2967,11 +2967,26 @@ static int nas_dir_skip(const char *path) {
     return m[0] && !strncasecmp(path, m, n) && (!path[n] || path[n] == '/');
 }
 
+/* Native installation directories on Extended Storage: the system puts its own
+ * installed games here. PS4Mount must never adopt them — touching a BGFT task of
+ * a natively installed game breaks the installation (see issue #6). */
+static int ext_native_dir(const char *rel) {
+    return (!strncmp(rel, "user/app", 8) && (!rel[8] || rel[8] == '/')) ||
+           (!strncmp(rel, "user/patch", 10) && (!rel[10] || rel[10] == '/')) ||
+           (!strncmp(rel, "user/addcont", 12) && (!rel[12] || rel[12] == '/'));
+}
+
+static int is_ext(const char *root) {
+    return !strncmp(root, "/mnt/ext", 8);
+}
+
 static int root_dir_skip(const char *path, const char *rel) {
     if (is_nas(g_walk_root))
         return 0; /* the share is the root itself */
     if (nas_dir_skip(path))
         return 1;
+    if (is_ext(g_walk_root) && ext_native_dir(rel))
+        return 1; /* skip native installations on Extended Storage */
     return is_internal(g_walk_root) && internal_dir_skip(path, rel);
 }
 
